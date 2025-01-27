@@ -1,18 +1,15 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { getEnvVar } from './utils/getEnvVar.js';
 
-// dotenv.config();
-// const PORT = Number(process.env.PORT);
-const PORT = Number(getEnvVar('PORT', '3000'));
+const port = Number(getEnvVar('PORT', '3000'));
 
 const setupServer = () => {
   const app = express();
-  app.use(express.json());
-  app.use(cors());
 
+  app.use(cors());
+  app.use(express.json());
   app.use(
     pino({
       transport: {
@@ -27,7 +24,7 @@ const setupServer = () => {
 
   app.use('*', (req, res, next) => {
     res.status(404).json({
-      message: 'Not found',
+      message: `${req.url} not found`,
     });
   });
 
@@ -38,8 +35,8 @@ const setupServer = () => {
     });
   });
 
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
   });
 };
 
