@@ -5,7 +5,7 @@ import { getEnvVar } from './utils/getEnvVar.js';
 
 const port = Number(getEnvVar('PORT', '3000'));
 
-const setupServer = () => {
+export const setupServer = () => {
   const app = express();
 
   app.use(cors());
@@ -39,5 +39,3 @@ const setupServer = () => {
     console.log(`Server is running on port ${port}`);
   });
 };
-
-export default setupServer;
