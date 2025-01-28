@@ -2,6 +2,7 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import { getEnvVar } from './utils/getEnvVar.js';
+import * as contactServices from './services/contacts.js';
 
 const port = Number(getEnvVar('PORT', '3000'));
 
@@ -20,6 +21,15 @@ export const setupServer = () => {
 
   app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });
+  });
+
+  app.get('/contacts', async (req, res) => {
+    const data = await contactServices.getContacts();
+    res.json({
+      status: 200,
+      message: 'Successfully found contacts!',
+      data,
+    });
   });
 
   app.use('*', (req, res, next) => {
