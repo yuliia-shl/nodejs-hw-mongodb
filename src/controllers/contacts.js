@@ -48,3 +48,14 @@ export const upsertContactController = async (req, res) => {
     data,
   });
 };
+
+export const deleteContactController = async (req, res) => {
+  const { contactId } = req.params;
+  const data = await contactServices.deleteContact(contactId);
+
+  if (!data) {
+    throw createHttpError(404, `Contact not found`);
+  }
+
+  res.status(204).send();
+};
