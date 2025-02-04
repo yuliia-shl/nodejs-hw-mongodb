@@ -33,9 +33,9 @@
 ```javascript
 {
   status: 500,
-		message: "Something went wrong",
-		data:
-		// конкретне повідомлення про помилку, отримане з об'єкта помилки
+  message: "Something went wrong",
+  data:
+  // конкретне повідомлення про помилку, отримане з об'єкта помилки
 }
 ```
 
@@ -68,10 +68,10 @@ http-errors(404, 'Contact not found')
 
 ```javascript
 {
-		status: 201,
-		message: "Successfully created a contact!",
-		data:
-		// дані створеного контакту
+  status: 201,
+  message: "Successfully created a contact!",
+  data:
+  // дані створеного контакту
 }
 ```
 
