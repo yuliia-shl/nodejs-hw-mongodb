@@ -1,6 +1,11 @@
 import { Router } from 'express';
 import * as contactsCtrl from '../controllers/contacts.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { validateBody } from '../middlewares/validateBody.js';
+import {
+  addContactValidSchema,
+  updateContactValidSchema,
+} from '../validation/contactValidSchema.js';
 
 const contactsRouter = Router();
 
@@ -11,11 +16,16 @@ contactsRouter.get(
   ctrlWrapper(contactsCtrl.getContactByIdController),
 );
 
-contactsRouter.post('/', ctrlWrapper(contactsCtrl.addContactsController));
+contactsRouter.post(
+  '/',
+  validateBody(addContactValidSchema),
+  ctrlWrapper(contactsCtrl.addContactsController),
+);
 
 contactsRouter.patch(
   '/:contactId',
-  ctrlWrapper(contactsCtrl.upsertContactController),
+  validateBody(updateContactValidSchema),
+  ctrlWrapper(contactsCtrl.updateContactController),
 );
 contactsRouter.delete(
   '/:contactId',
