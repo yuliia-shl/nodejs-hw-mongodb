@@ -3,16 +3,19 @@ import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { SORT_BY } from '../constants/contactsConst.js';
+import { parseContactFilterParams } from '../utils/filters/parseContactFilterParams.js';
 
 export const getContactsController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query, SORT_BY);
+  const filter = parseContactFilterParams(req.query);
 
   const data = await contactServices.getContacts({
     page,
     perPage,
     sortBy,
     sortOrder,
+    filter,
   });
 
   res.json({
@@ -27,7 +30,7 @@ export const getContactByIdController = async (req, res) => {
   const data = await contactServices.getContactById(contactId);
 
   if (!data) {
-    throw createHttpError(404, `Contact not found`);
+    throw createHttpError(404, 'Contact not found');
   }
 
   res.json({
