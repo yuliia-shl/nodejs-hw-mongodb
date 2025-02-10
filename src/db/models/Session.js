@@ -29,6 +29,6 @@ const sessionSchema = new Schema(
   },
 );
 
-const sessionCollection = model('session', sessionSchema);
+const SessionCollection = model('session', sessionSchema);
 
-export default sessionCollection;
+export default SessionCollection;
