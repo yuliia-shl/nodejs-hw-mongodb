@@ -1,10 +1,11 @@
 import { model, Schema } from 'mongoose';
+import UserCollection from './User.js';
 
 const sessionSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: 'user',
+      ref: UserCollection,
     },
     accessToken: {
       type: String,
