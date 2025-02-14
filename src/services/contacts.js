@@ -32,7 +32,10 @@ export const getContacts = async ({
 
   const paginationData = calcPaginationData({ totalItems, page, perPage });
 
-  if (page > paginationData.totalPages || page < 1) {
+  if (
+    (paginationData.totalPages !== 0 && page > paginationData.totalPages) ||
+    page < 1
+  ) {
     throw createHttpError(400, `Invalid page number`, {
       requestedPage: page,
       totalPages: paginationData.totalPages,
@@ -60,7 +63,5 @@ export const updateContact = async (filter, payload) => {
   return result;
 };
 
-export const deleteContact = async (_id) => {
-  const result = await ContactCollection.findOneAndDelete({ _id });
-  return result;
-};
+export const deleteContact = (filter) =>
+  ContactCollection.findOneAndDelete(filter);
