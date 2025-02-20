@@ -28,11 +28,11 @@ export const setupServer = () => {
     res.json({ message: 'Hello world!' });
   });
 
+  app.use('/uploads', express.static(UPLOAD_DIR));
+
   app.use(router);
 
   app.use('*', notFoundHandler);
-
-  app.use('uploads', express.static(UPLOAD_DIR));
 
   app.use('*', errorHandler);
 
