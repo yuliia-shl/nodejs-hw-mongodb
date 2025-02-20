@@ -6,16 +6,15 @@ import SessionCollection from '../db/models/Session.js';
 import {
   FIFTEEN_MINUTES,
   SMTP,
-  TEMPLATES_DIR,
   THIRTY_DAYS,
 } from '../constants/contactsConst.js';
+import { TEMPLATES_DIR } from '../constants/path.js';
 import jwt from 'jsonwebtoken';
 import { getEnvVar } from '../utils/getEnvVar.js';
 import { sendEmail } from '../utils/sendMail.js';
 import handlebars from 'handlebars';
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import mongoose from 'mongoose';
 
 export const registerUser = async (payload) => {
   const user = await UserCollection.findOne({
@@ -114,7 +113,7 @@ export const requestResetToken = async (email) => {
     },
     getEnvVar('JWT_SECRET'),
     {
-      expiresIn: '15m',
+      expiresIn: '5m',
     },
   );
 
