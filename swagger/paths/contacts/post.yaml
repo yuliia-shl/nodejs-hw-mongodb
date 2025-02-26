@@ -3,7 +3,6 @@ tags:
 summary: Create contact
 operationId: addContact
 description: |
-  <code>POST /contacts </code> <br>
   Create a new contact with details such as name, phone number, email, photo, and contact type. It is possible to mark contact favourite.'
 security:
   - bearerAuth: []
@@ -34,11 +33,13 @@ requestBody:
           isFavourite:
             description: 'Whether is contact favourite'
             type: boolean
-            example: false
+            example: true
+            default: false
           contactType:
             description: "Contact's type."
             type: string
             enum: ['personal', 'home', 'work']
+            default: personal
           userId:
             description: "Id of the contact's owner (user)"
             type: string

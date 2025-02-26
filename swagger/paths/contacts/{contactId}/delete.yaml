@@ -3,7 +3,6 @@ tags:
 summary: Delete contact by id
 operationId: deleteContact
 description: |
-  <code>DELETE /contacts/:contactId </code> <br>
   Delete a contact belonging to the logged-in user.
 security:
   - bearerAuth: []

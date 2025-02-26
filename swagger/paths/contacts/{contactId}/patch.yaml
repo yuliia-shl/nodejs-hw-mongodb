@@ -3,7 +3,6 @@ tags:
 summary: Update contact by id
 operationId: updateContact
 description: |
-  <code>PATCH /contacts/:contactId </code> <br>
   Update contact by id
 security:
   - bearerAuth: []
@@ -19,11 +18,6 @@ requestBody:
     multipart/form-data:
       schema:
         type: object
-        # required:
-        #   - name
-        #   - phoneNumber
-        #   - contactType
-        #   - userId
         properties:
           name:
             description: "Contact's name"

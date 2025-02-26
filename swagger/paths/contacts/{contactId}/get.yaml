@@ -3,7 +3,6 @@ tags:
 summary: Get contact by id
 operationId: getContact
 description: |
-  <code>GET /contacts/:contactId </code> <br>
   Get contact by id belonging to the logged-in user
 security:
   - bearerAuth: []
