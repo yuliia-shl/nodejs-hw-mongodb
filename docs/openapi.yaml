@@ -18,7 +18,7 @@ tags:
       - **Secure API:** Uses authentication tokens to protect user data.
 servers:
   - url: http://localhost:3000
-  # - url: #посилання на задеплоєний сайт
+  - url: https://contacts-app-8l89.onrender.com
 paths:
   /contacts:
     get:
